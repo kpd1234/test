@@ -1,0 +1,6 @@
+matplotlib==3.3.4
+numpy==1.19.5
+Pillow==9.0.1
+streamlit==1.0.0
+streamlit_webrtc==0.36.0
+tensorflow==2.6.0

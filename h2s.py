@@ -5,7 +5,6 @@ import streamlit as st
 
 import numpy as np
 import matplotlib.pyplot as plt
-import glob, os
 import re
 import PIL
 from PIL import Image

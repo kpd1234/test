@@ -29,12 +29,22 @@ def jpeg_to_8_bit_greyscale(path, maxsize):
                 img = img.crop((0, 0, m_min_d, m_min_d))
         img.thumbnail(maxsize, PIL.Image.ANTIALIAS)
         return np.asarray(img)
-    
-def load_image_dataset(path_dir, maxsize):
+def load_image_datasettr(path_dir, maxsize):
         images = []
         labels = []
-        os.chdir(path_dir)
-        for file in glob.glob("*.jpg"):
+        for file in glob('beef1/train1/*.jpg'):
+                img = jpeg_to_8_bit_greyscale(file, maxsize)
+                if re.match('ad.*', file):
+                        images.append(img)
+                        labels.append(0)
+                elif re.match('unad.*', file):
+                        images.append(img)
+                        labels.append(1)
+        return (np.asarray(images) , np.asarray(labels) )    
+def load_image_datasette(path_dir, maxsize):
+        images = []
+        labels = []
+        for file in glob('testt/*.jpg'):
                 img = jpeg_to_8_bit_greyscale(file, maxsize)
                 if re.match('ad.*', file):
                         images.append(img)
@@ -43,17 +53,7 @@ def load_image_dataset(path_dir, maxsize):
                         images.append(img)
                         labels.append(1)
         return (np.asarray(images) , np.asarray(labels) )
-def single(img, maxsize):
-        images = []
-        labels = []
-        img = jpeg_to_8_bit_greyscale(img, maxsize)
-        if re.match('ad.*', img):
-            images.append(img)
-            labels.append(0)
-        elif re.match('unad.*', img):
-            images.append(img)
-            labels.append(1)
-        return (np.asarray(images) , np.asarray(labels) )
+
 maxsize = 100, 100
 import streamlit as st
 from streamlit_webrtc import webrtc_streamer
@@ -61,9 +61,9 @@ from streamlit_webrtc import webrtc_streamer
 webrtc_streamer(key="example")
 ii = st.file_uploader("Choose an image...", type=".jpg")
 if ii is not None:
-    (train_images, train_labels) = load_image_dataset('beef1/train1', maxsize)
+    (train_images, train_labels) = load_image_datasettr('beef1/train1', maxsize)
 
-    (test_images, test_labels) = load_image_dataset('testt/', maxsize)
+    (test_images, test_labels) = load_image_datasette('testt/', maxsize)
 
     class_names = ['ad', 'unad']
 

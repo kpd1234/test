@@ -63,7 +63,7 @@ ii = st.file_uploader("Choose an image...", type=".jpg")
 if ii is not None:
     (train_images, train_labels) = load_image_dataset('beef1/train1', maxsize)
 
-    (test_images, test_labels) = load_image_dataset('beef1/testt', maxsize)
+    (test_images, test_labels) = load_image_dataset('beef1/test1', maxsize)
 
     class_names = ['ad', 'unad']
 

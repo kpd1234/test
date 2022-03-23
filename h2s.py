@@ -13,7 +13,7 @@ st.title("Healthy Meat for a Healthy You!")
 st.markdown("<span style=“background-color:#121922”>",unsafe_allow_html=True)
 st.write('Choose your meat type')
 from PIL import Image
-image = Image.open('test/chick.jpg')
+image = Image.open('chick.jpg')
 
 st.image(image,width=200)
 
@@ -61,9 +61,9 @@ from streamlit_webrtc import webrtc_streamer
 webrtc_streamer(key="example")
 ii = st.file_uploader("Choose an image...", type=".jpg")
 if ii is not None:
-    (train_images, train_labels) = load_image_dataset('test/beef1/train1', maxsize)
+    (train_images, train_labels) = load_image_dataset('beef1/train1', maxsize)
 
-    (test_images, test_labels) = load_image_dataset('test/beef1/testt', maxsize)
+    (test_images, test_labels) = load_image_dataset('beef1/testt', maxsize)
 
     class_names = ['ad', 'unad']
 
@@ -110,7 +110,7 @@ if ii is not None:
     print(predictions)
     st.title("Freshness Report")
     st.write("Chosen Meat: Chicken")
-    image = Image.open('test/chick.jpg')
+    image = Image.open('chick.jpg')
     st.image(image,width=200)
     st.write('Color')
     st.write('Texture')
@@ -118,15 +118,15 @@ if ii is not None:
     st.write("Decision ")
     if ((predictions[0][0])>(predictions[0][1])):
         st.write("Fresh Meat")
-        im = Image.open('test/wb.jpg')
+        im = Image.open('wb.jpg')
         st.image(im,width=200)
     elif ((predictions[0][0])<(predictions[0][1])):
         st.write("Old Meat")
-        im = Image.open('test/harm.jpg')
+        im = Image.open('harm.jpg')
         st.image(im,width=200)
         
     st.write('Thanks for choosing our application, Find your complementary Recepie to Healthify You!')
-    im = Image.open('test/r1.jpeg')
+    im = Image.open('r1.jpeg')
     st.image(im)
     display_images(test_images, np.argmax(predictions, axis = 1))
 

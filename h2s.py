@@ -43,7 +43,7 @@ def load_image_datasettr(path_dir, maxsize):
 def load_image_datasette(path_dir, maxsize):
         images = []
         labels = []
-        for file in glob('testt/*.jpg'):
+        for file in glob('beef1/test1/*.jpg'):
                 img = jpeg_to_8_bit_greyscale(file, maxsize)
                 if re.match('ad.*', file):
                         images.append(img)
@@ -62,7 +62,7 @@ ii = st.file_uploader("Choose an image...", type=".jpg")
 if ii is not None:
     (train_images, train_labels) = load_image_datasettr('beef1/train1', maxsize)
 
-    (test_images, test_labels) = load_image_datasette('testt/', maxsize)
+    (test_images, test_labels) = load_image_datasette('beef1/test1/', maxsize)
 
     class_names = ['ad', 'unad']
 
